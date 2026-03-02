@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ace-MU</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <h2>Ace-MU</h2>
+    <button onclick="location.href='semester.html'">Explore Resources</button>
+  </nav>
+
+  <section class="hero">
+    <h1>The Verified SLRTCE Resource Hub</h1>
+    <p>Less Searching. More Studying.</p>
+    <button onclick="location.href='semester.html'">Get Started</button>
+  </section>
+
+</body>
+</html>

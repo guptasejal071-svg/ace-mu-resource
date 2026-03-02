@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Semesters - Ace MU</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1 style="text-align:center;">Select Semester</h1>
+
+<div class="cards">
+  <div class="card" onclick="openSubject()">SEM 4</div>
+  <div class="card">SEM 5</div>
+  <div class="card">SEM 6</div>
+</div>
+
+<script>
+function openSubject() {
+  window.location.href = "subject.html";
+}
+</script>
+
+</body>
+</html>

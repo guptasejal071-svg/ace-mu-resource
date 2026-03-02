@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ADSA - Ace MU</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>ADSA Resources</h1>
+
+<div id="resourceList"></div>
+
+<button onclick="addResource()">Upload Sample Resource</button>
+
+<script type="module">
+
+import { db, collection, addDoc, getDocs, updateDoc, doc } from "./firebase.js";
+
+const list = document.getElementById("resourceList");
+
+async function loadResources() {
+  list.innerHTML = "";
+  const querySnapshot = await getDocs(collection(db, "resources"));
+  
+  querySnapshot.forEach((docSnap) => {
+    const data = docSnap.data();
+    
+    list.innerHTML += `
+      <div class="card">
+        <h3>${data.title}</h3>
+        <p>Upvotes: ${data.votes}</p>
+        ${data.votes >= 5 ? "<span style='color:gold'>🥇 Gold Resource</span>" : ""}
+        <br><br>
+        <button onclick="upvote('${docSnap.id}', ${data.votes})">Upvote</button>
+      </div>
+    `;
+  });
+}
+
+window.upvote = async function(id, votes) {
+  const resourceRef = doc(db, "resources", id);
+  await updateDoc(resourceRef, {
+    votes: votes + 1
+  });
+  loadResources();
+}
+
+window.addResource = async function() {
+  await addDoc(collection(db, "resources"), {
+    title: "ADSA Easy Solution Unit 1",
+    votes: 0
+  });
+  loadResources();
+}
+
+loadResources();
+
+</script>
+
+</body>
+</html>
